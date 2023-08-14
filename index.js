@@ -13,9 +13,10 @@ const fs = require('fs')
 
 const salt = bcrypt.genSaltSync(10)
 const secret = 'ajhsaldnsajkldalkjdhsjsadsad'
+const port = process.env.PORT || 3000
 
 
-app.use(cors({credentials:true,origin:'http://localhost:3000'}))
+app.use(cors({credentials:true,origin: port}))
 app.use(express.json())
 app.use(cookieParser())
 app.use('/uploads', express.static(__dirname + '/uploads'))
@@ -147,8 +148,3 @@ app.get('/post/:id', async (req, res) =>{
 })
 
 app.listen(4000)
-
-// mongodb+srv://personBLog:guill6250730@clustergui.lwjwohm.mongodb.net/?retryWrites=true&w=majority
-
-// personBlog
-// senha : guill6250730
