@@ -13,7 +13,7 @@ const fs = require('fs')
 
 const salt = bcrypt.genSaltSync(10)
 const secret = 'ajhsaldnsajkldalkjdhsjsadsad'
-const port = process.env.PORT ?? 4000
+const port = process.env.PORT || 4000
 
 
 app.use(cors({credentials:true,origin: port}))
@@ -22,6 +22,10 @@ app.use(cookieParser())
 app.use('/uploads', express.static(__dirname + '/uploads'))
 
 mongoose.connect('mongodb+srv://personBLog:guill6250730@clustergui.lwjwohm.mongodb.net/?retryWrites=true&w=majority')
+
+app.get("/", (req,res) => {
+    return res.json("Hello world")
+})
 
 app.post('/register', async (req, res)=> {
     const { userName, password } = req.body
@@ -147,4 +151,4 @@ app.get('/post/:id', async (req, res) =>{
    res.json(postDoc)
 })
 
-app.listen(port, () => console.log('Server is running on port', port))
+app.listen(port)
