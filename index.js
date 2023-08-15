@@ -13,7 +13,7 @@ const fs = require('fs')
 
 const salt = bcrypt.genSaltSync(10)
 const secret = 'ajhsaldnsajkldalkjdhsjsadsad'
-const port = process.env.PORT || 4000
+const port = process.env.PORT ?? 3000
 
 
 app.use(cors({credentials:true,origin:'http://localhost:3000'}))
