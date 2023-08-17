@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 const cors = require('cors')
-const mongoose  = require('mongoose')
+// const mongoose  = require('mongoose')
 const User = require('./models/User')
 const Post = require('./models/Post')
 const bcrypt = require('bcryptjs')
@@ -10,10 +10,14 @@ const cookieParser = require('cookie-parser')
 const multer  = require('multer')
 const uploadMiddleware = multer({ dest: 'uploads/' })
 const fs = require('fs')
+const connectDB = require('./connectMongo')
+require('dotenv').config()
 
+connectDB()
 const salt = bcrypt.genSaltSync(10)
 const secret = 'ajhsaldnsajkldalkjdhsjsadsad'
 const port = process.env.PORT || 4000
+
 
 
 app.use(cors({credentials:true,origin: 'http://localhost:3000'}))
@@ -21,7 +25,8 @@ app.use(express.json())
 app.use(cookieParser())
 app.use('/uploads', express.static(__dirname + '/uploads'))
 
-mongoose.connect('mongodb+srv://personBLog:guill6250730@clustergui.lwjwohm.mongodb.net/?retryWrites=true&w=majority')
+
+
 
 app.get("/", (req,res) => {
     return res.json("Hello world")
