@@ -11,6 +11,7 @@ const multer  = require('multer')
 const uploadMiddleware = multer({ dest: 'uploads/' })
 const fs = require('fs')
 const connectDB = require('./connectMongo')
+const { headers } = require('./node.config')
 require('dotenv').config()
 
 connectDB()
@@ -18,7 +19,7 @@ const salt = bcrypt.genSaltSync(10)
 const secret = 'ajhsaldnsajkldalkjdhsjsadsad'
 const port = process.env.PORT || 4000
 
-
+headers()
 
 app.use(cors({credentials:true,origin: 'https://blogpessoal-devgui.vercel.app'}))
 app.use(express.json())
