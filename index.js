@@ -21,7 +21,7 @@ const port = process.env.PORT || 4000
 
 
 
-app.use(cors({credentials:true,origin: 'https://blogpessoal-devgui.vercel.app', header:'Access-Control-Allow-Origin: https://blogpessoal-devgui.vercel.app'}))
+app.use(cors({credentials:true,origin: 'https://blogpessoal-devgui.vercel.app'}))
 app.use(express.json())
 app.use(cookieParser())
 app.use('/uploads', express.static(__dirname + '/uploads'))
