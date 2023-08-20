@@ -11,7 +11,6 @@ const multer  = require('multer')
 const uploadMiddleware = multer({ dest: 'uploads/' })
 const fs = require('fs')
 const connectDB = require('./connectMongo')
-const { headers } = require('./node.config')
 require('dotenv').config()
 
 connectDB()
