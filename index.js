@@ -20,7 +20,7 @@ const port = process.env.PORT || 4000
 
 
 
-app.use(cors({credentials:true,origin: '*'}))
+// app.use(cors({credentials:true,origin: '*'}))
 app.use(express.json())
 app.use(cookieParser())
 app.use('/uploads', express.static(__dirname + '/uploads'))
@@ -29,7 +29,7 @@ app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "*");
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
-  app.use(cors());
+  app.use(cors({credentials:true,origin: '*'}));
   next();
 });
 
