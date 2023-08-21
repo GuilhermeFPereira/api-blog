@@ -101,7 +101,7 @@ app.post('/login', async (req, res) =>{
 app.get('/profile', (req,res) =>{
     const {token} = req.cookies
   //   res.header('Access-Control-Allow-Credentials', true)
-  // res.header('Access-Control-Allow-Origin', 'https://blogpessoal-devgui.vercel.app')
+   res.header('Access-Control-Allow-Origin', '*')
   // another common pattern
   // res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
   // res.header('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
