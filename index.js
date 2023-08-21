@@ -34,12 +34,21 @@ app.get("/", (req,res) => {
 
 app.post('/register', async (req, res)=> {
     const { userName, password } = req.body
+    res.setHeader('Access-Control-Allow-Credentials', true)
+  res.setHeader('Access-Control-Allow-Origin', '*')
+  // another common pattern
+  // res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
+  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
+  )
     try{
         const userDoc = await User.create({
             userName ,
              password:bcrypt.hashSync(password,salt) 
             })
-            res.header('Access-Control-Allow-Origin', '*')    
+           
         res.json(userDoc)
     }catch(e){
         console.log(e);
@@ -53,6 +62,15 @@ app.post('/login', async (req, res) =>{
     const {userName, password} = req.body
     const userDoc = await User.findOne({userName})
    const passOk = bcrypt.compareSync(password, userDoc.password)
+   res.setHeader('Access-Control-Allow-Credentials', true)
+  res.setHeader('Access-Control-Allow-Origin', '*')
+  // another common pattern
+  // res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
+  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
+  )
    
     if(passOk){
         // logado
@@ -64,7 +82,7 @@ app.post('/login', async (req, res) =>{
             })
         })
     //res.json()  
-    res.header('Access-Control-Allow-Origin', '*')  
+    
 
     }else{
         res.status(400).json('Usuario ou Senha Incorreta')
@@ -74,19 +92,45 @@ app.post('/login', async (req, res) =>{
 
 app.get('/profile', (req,res) =>{
     const {token} = req.cookies
+    res.setHeader('Access-Control-Allow-Credentials', true)
+  res.setHeader('Access-Control-Allow-Origin', '*')
+  // another common pattern
+  // res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
+  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
+  )
     jwt.verify(token, secret, {}, (err, info)=>{
         if(err) throw err
-        res.setHeader('Access-Control-Allow-Origin', '*')
         res.json(info)
     })
 })
 
 app.post('/logout', (req,res) =>{
+
     res.cookie('token', '').json('ok')
-    res.header('Access-Control-Allow-Origin', '*')
+    res.setHeader('Access-Control-Allow-Credentials', true)
+  res.setHeader('Access-Control-Allow-Origin', '*')
+  // another common pattern
+  // res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
+  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
+  )
 })
 
 app.post('/post', uploadMiddleware.single('file'), async (req,res)=>{
+    res.setHeader('Access-Control-Allow-Credentials', true)
+  res.setHeader('Access-Control-Allow-Origin', '*')
+  // another common pattern
+  // res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
+  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
+  )
     const {originalname, path} = req.file
     const parts = originalname.split('.')
     const ext = parts[parts.length - 1]
@@ -105,7 +149,7 @@ app.post('/post', uploadMiddleware.single('file'), async (req,res)=>{
             author:info.id,
     
         })
-        res.header('Access-Control-Allow-Origin', '*')
+        
         res.json(postDoc)
         
     })
@@ -116,6 +160,15 @@ app.post('/post', uploadMiddleware.single('file'), async (req,res)=>{
 })
 
 app.put('/post',uploadMiddleware.single('file'), async (req,res) => {
+    res.setHeader('Access-Control-Allow-Credentials', true)
+  res.setHeader('Access-Control-Allow-Origin', '*')
+  // another common pattern
+  // res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
+  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
+  )
     let newPath = null; 
     if (req.file) {
       const {originalname,path} = req.file;
@@ -141,14 +194,22 @@ app.put('/post',uploadMiddleware.single('file'), async (req,res) => {
         cover: newPath ? newPath : postDoc.cover,
       });
   
-      res.header('Access-Control-Allow-Origin', '*')
+      
       res.json(postDoc);
     });
   
   });
 
 app.get('/post', async (req, res) => {
-    res.header('Access-Control-Allow-Origin', '*')
+    res.setHeader('Access-Control-Allow-Credentials', true)
+  res.setHeader('Access-Control-Allow-Origin', '*')
+  // another common pattern
+  // res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
+  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
+  )
     res.json(
         await Post.find()
         .populate('author', ['userName'])
@@ -158,10 +219,19 @@ app.get('/post', async (req, res) => {
 })
 
 app.get('/post/:id', async (req, res) =>{
+    res.setHeader('Access-Control-Allow-Credentials', true)
+  res.setHeader('Access-Control-Allow-Origin', '*')
+  // another common pattern
+  // res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
+  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
+  )
     const {id} = req.params
    const postDoc = await Post.findById(id).populate('author', ['userName'])
    res.json(postDoc)
-   res.header('Access-Control-Allow-Origin', '*')
+   
 })
 
 app.listen(port)
