@@ -39,7 +39,7 @@ app.post('/register', async (req, res)=> {
             userName ,
              password:bcrypt.hashSync(password,salt) 
             })
-            res.setHeader('Access-Control-Allow-Origin', '*')    
+            res.header('Access-Control-Allow-Origin', '*')    
         res.json(userDoc)
     }catch(e){
         console.log(e);
@@ -64,7 +64,7 @@ app.post('/login', async (req, res) =>{
             })
         })
     //res.json()  
-    res.setHeader('Access-Control-Allow-Origin', '*')  
+    res.header('Access-Control-Allow-Origin', '*')  
 
     }else{
         res.status(400).json('Usuario ou Senha Incorreta')
@@ -83,7 +83,7 @@ app.get('/profile', (req,res) =>{
 
 app.post('/logout', (req,res) =>{
     res.cookie('token', '').json('ok')
-    res.setHeader('Access-Control-Allow-Origin', '*')
+    res.header('Access-Control-Allow-Origin', '*')
 })
 
 app.post('/post', uploadMiddleware.single('file'), async (req,res)=>{
@@ -105,7 +105,7 @@ app.post('/post', uploadMiddleware.single('file'), async (req,res)=>{
             author:info.id,
     
         })
-        res.setHeader('Access-Control-Allow-Origin', '*')
+        res.header('Access-Control-Allow-Origin', '*')
         res.json(postDoc)
         
     })
@@ -141,14 +141,14 @@ app.put('/post',uploadMiddleware.single('file'), async (req,res) => {
         cover: newPath ? newPath : postDoc.cover,
       });
   
-      res.setHeader('Access-Control-Allow-Origin', '*')
+      res.header('Access-Control-Allow-Origin', '*')
       res.json(postDoc);
     });
   
   });
 
 app.get('/post', async (req, res) => {
-    res.setHeader('Access-Control-Allow-Origin', '*')
+    res.header('Access-Control-Allow-Origin', '*')
     res.json(
         await Post.find()
         .populate('author', ['userName'])
@@ -161,7 +161,7 @@ app.get('/post/:id', async (req, res) =>{
     const {id} = req.params
    const postDoc = await Post.findById(id).populate('author', ['userName'])
    res.json(postDoc)
-   res.setHeader('Access-Control-Allow-Origin', '*')
+   res.header('Access-Control-Allow-Origin', '*')
 })
 
 app.listen(port)
