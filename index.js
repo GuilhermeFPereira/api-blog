@@ -19,7 +19,7 @@ const secret = 'ajhsaldnsajkldalkjdhsjsadsad'
 const port = process.env.PORT || 4000
 
 
-
+app.use(cors())
 app.use(cors({credentials:true,origin: 'https://blogpessoal-devgui.vercel.app'}))
 app.use(express.json())
 app.use(cookieParser())
