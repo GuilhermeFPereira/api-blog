@@ -34,12 +34,12 @@ app.get("/", (req,res) => {
 
 app.post('/register', async (req, res)=> {
     const { userName, password } = req.body
-    res.setHeader('Access-Control-Allow-Credentials', true)
-  res.setHeader('Access-Control-Allow-Origin', 'https://blogpessoal-devgui.vercel.app')
+    res.header('Access-Control-Allow-Credentials', true)
+  res.header('Access-Control-Allow-Origin', 'https://blogpessoal-devgui.vercel.app')
   // another common pattern
   // res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
-  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
-  res.setHeader(
+  res.header('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
+  res.header(
     'Access-Control-Allow-Headers',
     'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
   )
@@ -62,12 +62,12 @@ app.post('/login', async (req, res) =>{
     const {userName, password} = req.body
     const userDoc = await User.findOne({userName})
    const passOk = bcrypt.compareSync(password, userDoc.password)
-   res.setHeader('Access-Control-Allow-Credentials', true)
-  res.setHeader('Access-Control-Allow-Origin', 'https://blogpessoal-devgui.vercel.app')
+   res.header('Access-Control-Allow-Credentials', true)
+  res.header('Access-Control-Allow-Origin', 'https://blogpessoal-devgui.vercel.app')
   // another common pattern
   // res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
-  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
-  res.setHeader(
+  res.header('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
+  res.header(
     'Access-Control-Allow-Headers',
     'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
   )
@@ -92,12 +92,12 @@ app.post('/login', async (req, res) =>{
 
 app.get('/profile', (req,res) =>{
     const {token} = req.cookies
-    res.setHeader('Access-Control-Allow-Credentials', true)
-  res.setHeader('Access-Control-Allow-Origin', 'https://blogpessoal-devgui.vercel.app')
+    res.header('Access-Control-Allow-Credentials', true)
+  res.header('Access-Control-Allow-Origin', 'https://blogpessoal-devgui.vercel.app')
   // another common pattern
   // res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
-  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
-  res.setHeader(
+  res.header('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
+  res.header(
     'Access-Control-Allow-Headers',
     'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
   )
@@ -110,24 +110,24 @@ app.get('/profile', (req,res) =>{
 app.post('/logout', (req,res) =>{
 
     res.cookie('token', '').json('ok')
-    res.setHeader('Access-Control-Allow-Credentials', true)
-  res.setHeader('Access-Control-Allow-Origin', 'https://blogpessoal-devgui.vercel.app')
+    res.header('Access-Control-Allow-Credentials', true)
+  res.header('Access-Control-Allow-Origin', 'https://blogpessoal-devgui.vercel.app')
   // another common pattern
   // res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
-  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
-  res.setHeader(
+  res.header('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
+  res.header(
     'Access-Control-Allow-Headers',
     'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
   )
 })
 
 app.post('/post', uploadMiddleware.single('file'), async (req,res)=>{
-    res.setHeader('Access-Control-Allow-Credentials', true)
-  res.setHeader('Access-Control-Allow-Origin', 'https://blogpessoal-devgui.vercel.app')
+    res.header('Access-Control-Allow-Credentials', true)
+  res.header('Access-Control-Allow-Origin', 'https://blogpessoal-devgui.vercel.app')
   // another common pattern
   // res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
-  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
-  res.setHeader(
+  res.header('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
+  res.header(
     'Access-Control-Allow-Headers',
     'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
   )
@@ -160,12 +160,12 @@ app.post('/post', uploadMiddleware.single('file'), async (req,res)=>{
 })
 
 app.put('/post',uploadMiddleware.single('file'), async (req,res) => {
-    res.setHeader('Access-Control-Allow-Credentials', true)
-  res.setHeader('Access-Control-Allow-Origin', 'https://blogpessoal-devgui.vercel.app')
+    res.header('Access-Control-Allow-Credentials', true)
+  res.header('Access-Control-Allow-Origin', 'https://blogpessoal-devgui.vercel.app')
   // another common pattern
   // res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
-  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
-  res.setHeader(
+  res.header('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
+  res.header(
     'Access-Control-Allow-Headers',
     'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
   )
@@ -201,12 +201,12 @@ app.put('/post',uploadMiddleware.single('file'), async (req,res) => {
   });
 
 app.get('/post', async (req, res) => {
-    res.setHeader('Access-Control-Allow-Credentials', true)
-  res.setHeader('Access-Control-Allow-Origin', 'https://blogpessoal-devgui.vercel.app')
+    res.header('Access-Control-Allow-Credentials', true)
+  res.header('Access-Control-Allow-Origin', 'https://blogpessoal-devgui.vercel.app')
   // another common pattern
   // res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
-  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
-  res.setHeader(
+  res.header('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
+  res.header(
     'Access-Control-Allow-Headers',
     'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
   )
@@ -219,12 +219,12 @@ app.get('/post', async (req, res) => {
 })
 
 app.get('/post/:id', async (req, res) =>{
-    res.setHeader('Access-Control-Allow-Credentials', true)
-  res.setHeader('Access-Control-Allow-Origin', 'https://blogpessoal-devgui.vercel.app')
+    res.header('Access-Control-Allow-Credentials', true)
+  res.header('Access-Control-Allow-Origin', 'https://blogpessoal-devgui.vercel.app')
   // another common pattern
   // res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
-  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
-  res.setHeader(
+  res.header('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
+  res.header(
     'Access-Control-Allow-Headers',
     'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
   )
