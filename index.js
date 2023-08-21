@@ -35,7 +35,7 @@ app.get("/", (req,res) => {
 app.post('/register', async (req, res)=> {
     const { userName, password } = req.body
     res.setHeader('Access-Control-Allow-Credentials', true)
-  res.setHeader('Access-Control-Allow-Origin', '*')
+  res.setHeader('Access-Control-Allow-Origin', 'https://blogpessoal-devgui.vercel.app')
   // another common pattern
   // res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
   res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
@@ -63,7 +63,7 @@ app.post('/login', async (req, res) =>{
     const userDoc = await User.findOne({userName})
    const passOk = bcrypt.compareSync(password, userDoc.password)
    res.setHeader('Access-Control-Allow-Credentials', true)
-  res.setHeader('Access-Control-Allow-Origin', '*')
+  res.setHeader('Access-Control-Allow-Origin', 'https://blogpessoal-devgui.vercel.app')
   // another common pattern
   // res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
   res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
@@ -93,7 +93,7 @@ app.post('/login', async (req, res) =>{
 app.get('/profile', (req,res) =>{
     const {token} = req.cookies
     res.setHeader('Access-Control-Allow-Credentials', true)
-  res.setHeader('Access-Control-Allow-Origin', '*')
+  res.setHeader('Access-Control-Allow-Origin', 'https://blogpessoal-devgui.vercel.app')
   // another common pattern
   // res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
   res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
@@ -111,7 +111,7 @@ app.post('/logout', (req,res) =>{
 
     res.cookie('token', '').json('ok')
     res.setHeader('Access-Control-Allow-Credentials', true)
-  res.setHeader('Access-Control-Allow-Origin', '*')
+  res.setHeader('Access-Control-Allow-Origin', 'https://blogpessoal-devgui.vercel.app')
   // another common pattern
   // res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
   res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
@@ -123,7 +123,7 @@ app.post('/logout', (req,res) =>{
 
 app.post('/post', uploadMiddleware.single('file'), async (req,res)=>{
     res.setHeader('Access-Control-Allow-Credentials', true)
-  res.setHeader('Access-Control-Allow-Origin', '*')
+  res.setHeader('Access-Control-Allow-Origin', 'https://blogpessoal-devgui.vercel.app')
   // another common pattern
   // res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
   res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
@@ -161,7 +161,7 @@ app.post('/post', uploadMiddleware.single('file'), async (req,res)=>{
 
 app.put('/post',uploadMiddleware.single('file'), async (req,res) => {
     res.setHeader('Access-Control-Allow-Credentials', true)
-  res.setHeader('Access-Control-Allow-Origin', '*')
+  res.setHeader('Access-Control-Allow-Origin', 'https://blogpessoal-devgui.vercel.app')
   // another common pattern
   // res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
   res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
@@ -202,7 +202,7 @@ app.put('/post',uploadMiddleware.single('file'), async (req,res) => {
 
 app.get('/post', async (req, res) => {
     res.setHeader('Access-Control-Allow-Credentials', true)
-  res.setHeader('Access-Control-Allow-Origin', '*')
+  res.setHeader('Access-Control-Allow-Origin', 'https://blogpessoal-devgui.vercel.app')
   // another common pattern
   // res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
   res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
@@ -220,7 +220,7 @@ app.get('/post', async (req, res) => {
 
 app.get('/post/:id', async (req, res) =>{
     res.setHeader('Access-Control-Allow-Credentials', true)
-  res.setHeader('Access-Control-Allow-Origin', '*')
+  res.setHeader('Access-Control-Allow-Origin', 'https://blogpessoal-devgui.vercel.app')
   // another common pattern
   // res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
   res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
