@@ -16,7 +16,7 @@ require('dotenv').config()
 connectDB()
 const salt = bcrypt.genSaltSync(10)
 const secret = 'ajhsaldnsajkldalkjdhsjsadsad'
-const port = process.env.PORT || 4000
+const port = process.env.port || 4000
 
 
 
