@@ -12,14 +12,14 @@ const uploadMiddleware = multer({ dest: 'uploads/' })
 const fs = require('fs')
 const connectDB = require('./connectMongo')
 require('dotenv').config()
-const allowCors = require('./allowCors')
+
 
 connectDB()
 const salt = bcrypt.genSaltSync(10)
 const secret = 'ajhsaldnsajkldalkjdhsjsadsad'
 const port = process.env.port || 4000
 
-allowCors()
+
 
 app.use(cors({credentials:true,origin: 'https://blogpessoal-devgui.vercel.app'}))
 app.use(express.json())
@@ -43,8 +43,8 @@ app.get("/", (req,res) => {
 
 app.post('/register', async (req, res)=> {
     const { userName, password } = req.body
-  //   res.header('Access-Control-Allow-Credentials', true)
-  // res.header('Access-Control-Allow-Origin', 'https://blogpessoal-devgui.vercel.app')
+    res.header('Access-Control-Allow-Credentials', true)
+  res.header('Access-Control-Allow-Origin', 'https://blogpessoal-devgui.vercel.app')
   // // another common pattern
   // res.header('Access-Control-Allow-Origin', req.headers.origin);
   // res.header('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
@@ -71,8 +71,8 @@ app.post('/login', async (req, res) =>{
     const {userName, password} = req.body
     const userDoc = await User.findOne({userName})
    const passOk = bcrypt.compareSync(password, userDoc.password)
-  //  res.header('Access-Control-Allow-Credentials', true)
-  // res.header('Access-Control-Allow-Origin', 'https://blogpessoal-devgui.vercel.app')
+   res.header('Access-Control-Allow-Credentials', true)
+  res.header('Access-Control-Allow-Origin', 'https://blogpessoal-devgui.vercel.app')
   // // another common pattern
   // // res.header('Access-Control-Allow-Origin', req.headers.origin);
   // res.header('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
@@ -101,8 +101,8 @@ app.post('/login', async (req, res) =>{
 
 app.get('/profile', (req,res) =>{
     const {token} = req.cookies
-  // res.header('Access-Control-Allow-Credentials', true)
-  //  res.header('Access-Control-Allow-Origin', 'https://blogpessoal-devgui.vercel.app')
+  res.header('Access-Control-Allow-Credentials', true)
+   res.header('Access-Control-Allow-Origin', 'https://blogpessoal-devgui.vercel.app')
   // // another common pattern
   // // res.header('Access-Control-Allow-Origin', req.headers.origin);
   // res.header('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
@@ -119,8 +119,8 @@ app.get('/profile', (req,res) =>{
 app.post('/logout', (req,res) =>{
 
     res.cookie('token', '').json('ok')
-  //   res.header('Access-Control-Allow-Credentials', true)
-  // res.header('Access-Control-Allow-Origin', 'https://blogpessoal-devgui.vercel.app')
+    res.header('Access-Control-Allow-Credentials', true)
+  res.header('Access-Control-Allow-Origin', 'https://blogpessoal-devgui.vercel.app')
   // // another common pattern
   // res.header('Access-Control-Allow-Origin', req.headers.origin);
   // res.header('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
@@ -131,8 +131,8 @@ app.post('/logout', (req,res) =>{
 })
 
 app.post('/post', uploadMiddleware.single('file'), async (req,res)=>{
-  //   res.header('Access-Control-Allow-Credentials', true)
-  // res.header('Access-Control-Allow-Origin', 'https://blogpessoal-devgui.vercel.app')
+    res.header('Access-Control-Allow-Credentials', true)
+  res.header('Access-Control-Allow-Origin', 'https://blogpessoal-devgui.vercel.app')
   // // another common pattern
   // res.header('Access-Control-Allow-Origin', req.headers.origin);
   // res.header('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
@@ -169,8 +169,8 @@ app.post('/post', uploadMiddleware.single('file'), async (req,res)=>{
 })
 
 app.put('/post',uploadMiddleware.single('file'), async (req,res) => {
-  //   res.header('Access-Control-Allow-Credentials', true)
-  // res.header('Access-Control-Allow-Origin', 'https://blogpessoal-devgui.vercel.app')
+    res.header('Access-Control-Allow-Credentials', true)
+  res.header('Access-Control-Allow-Origin', 'https://blogpessoal-devgui.vercel.app')
   // // another common pattern
   // res.header('Access-Control-Allow-Origin', req.headers.origin);
   // res.header('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
@@ -210,8 +210,8 @@ app.put('/post',uploadMiddleware.single('file'), async (req,res) => {
   });
 
 app.get('/post', async (req, res) => {
-  //   res.header('Access-Control-Allow-Credentials', true)
-  // res.header('Access-Control-Allow-Origin', 'https://blogpessoal-devgui.vercel.app')
+    res.header('Access-Control-Allow-Credentials', true)
+  res.header('Access-Control-Allow-Origin', 'https://blogpessoal-devgui.vercel.app')
   // // another common pattern
   // res.header('Access-Control-Allow-Origin', req.headers.origin);
   // res.header('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
@@ -228,8 +228,8 @@ app.get('/post', async (req, res) => {
 })
 
 app.get('/post/:id', async (req, res) =>{
-  //   res.header('Access-Control-Allow-Credentials', true)
-  // res.header('Access-Control-Allow-Origin', 'https://blogpessoal-devgui.vercel.app')
+    res.header('Access-Control-Allow-Credentials', true)
+  res.header('Access-Control-Allow-Origin', 'https://blogpessoal-devgui.vercel.app')
   // // another common pattern
   // res.header('Access-Control-Allow-Origin', req.headers.origin);
   // res.header('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
