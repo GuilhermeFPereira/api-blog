@@ -17,7 +17,7 @@ require('dotenv').config()
 connectDB()
 const salt = bcrypt.genSaltSync(10)
 const secret = 'ajhsaldnsajkldalkjdhsjsadsad'
-const port = process.env.port || 4000
+const port = process.env.PORT || 4000
 
 
 
@@ -34,6 +34,10 @@ app.use('/uploads', express.static(__dirname + '/uploads'))
 //   next();
 // });
 
+app.use((req, res, next) => {
+  res.setHeader("Content-Security-Policy", "default-src 'none'; font-src 'self' fonts.gstatic.com;");
+  next();
+});
 
 
 
